@@ -5,7 +5,7 @@ Multi-Pi Home Monitoring System — Pi 1 Node
 
 Responsibilities:
   - USB camera (always on, no PIR)
-  - YOLOv8n-pose fall + fight detection
+  - YOLO26n-pose fall + fight detection
   - Audio detection (YAMNet + heuristics)
   - DHT22 temperature sensor on GPIO 26
   - USB speaker TTS announcements
@@ -25,18 +25,18 @@ import threading
 
 from ultralytics import YOLO
 
-from config.settings           import MODEL_PATH, WEB_PORT
-from camera.camera_thread      import CameraThread
+from config.settings import MODEL_PATH, WEB_PORT
+from camera.camera_thread import CameraThread
 from detection.person_registry import PersonRegistry
-from alerting.telegram_alert   import TelegramThread
-from alerting.telegram_bot     import TelegramBotThread
-from audio.audio_state         import audio_state
-from audio.yamnet_thread       import YAMNetThread, YAMNET_OK
-from audio.audio_detector      import AudioDetectorThread, PYAUDIO_OK
-from sensors.temp_sensor       import TempSensor
-from sensors.tts_speaker       import TTSSpeaker
-from inference_thread          import InferenceThread, get_live_status
-from server.web_server         import start_server, get_latest_frame
+from alerting.telegram_alert import TelegramThread
+from alerting.telegram_bot import TelegramBotThread
+from audio.audio_state import audio_state
+from audio.yamnet_thread import YAMNetThread, YAMNET_OK
+from audio.audio_detector import AudioDetectorThread, PYAUDIO_OK
+from sensors.temp_sensor import TempSensor
+from sensors.tts_speaker import TTSSpeaker
+from inference_thread import InferenceThread, get_live_status
+from server.web_server import start_server, get_latest_frame
 
 
 # ─── Graceful shutdown ────────────────────────────────────────────────────────

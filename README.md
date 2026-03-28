@@ -111,39 +111,21 @@ The **Telegram bot** (Pi 1) acts as a remote dashboard — send `/snapshot` for 
 
 ## Hardware & Justification
 
-| Component          | Choice                        | Key Reason                                                                   |
-| ------------------ | ----------------------------- | ---------------------------------------------------------------------------- |
-| Compute            | Raspberry Pi 5 (8 GB RAM)     | Enough RAM for concurrent ONNX + TF inference; quad-core for multi-threading |
-| Camera             | Logitech USB webcam (640×480) | Plug-and-play V4L2; hot-swappable; no CSI ribbon fragility                   |
-| Microphone         | Logitech webcam built-in mic  | Integrated with camera — one USB device for both video and audio             |
-| Temperature sensor | DHT22 on GPIO 26              | ±0.5°C accuracy; single-wire; 3.3 V compatible                               |
-| Motion sensor      | PIR on GPIO 26                | Zero standby power; digital GPIO trigger                                     |
-| Speaker            | USB speaker                   | pyttsx3 compatible; network-independent TTS                                  |
-| Vision model       | YOLOv8n-pose ONNX             | Smallest YOLO with 17 keypoints; fastest CPU inference                       |
-| Audio model        | YAMNet (TF-Hub)               | 521 classes; pre-trained; matches 16 kHz input directly                      |
-| Alerting           | Telegram Bot API              | Free; push delivery; rich media (GIF); two-way bot commands                  |
-| Web server         | Flask                         | Lightweight; native MJPEG `multipart/x-mixed-replace` support                |
+| Component          | Choice                        | Key Reason                                                                              |
+| ------------------ | ----------------------------- | --------------------------------------------------------------------------------------- |
+| Compute            | Raspberry Pi 5 (8 GB RAM)     | Enough RAM for concurrent ONNX + TF inference; quad-core for multi-threading            |
+| Camera             | Logitech USB webcam (640×480) | USB Connectedfragility                                                                  |
+| Microphone         | Logitech webcam built-in mic  | Integrated with camera — one USB device for both video and audio                        |
+| Temperature sensor | DHT22 on GPIO 26              | ±0.5°C accuracy; single-wire; 3.3 V compatible                                          |
+| Motion sensor      | PIR on GPIO 26                | Zero standby power; digital GPIO trigger                                                |
+| Speaker            | USB speaker                   | pyttsx3 compatible; network-independent TTS                                             |
+| Vision model       | YOLO26n-pose ONNX             | The latest yolo pose model exported in the ONNX format for the fastest inference on cpu |
+| Audio model        | YAMNet (TF-Hub)               | 521 classes; pre-trained; matches 16 kHz input directly                                 |
+| Alerting           | Telegram Bot API              | Free; push delivery; rich media (GIF); two-way bot commands                             |
+| Web server         | Flask                         | Lightweight; native MJPEG `multipart/x-mixed-replace` support                           |
 
 **Why not cloud inference?** Edge processing keeps video on-device (privacy), eliminates round-trip latency (< 100 ms vs 400–800 ms), works offline, and has no per-request API cost.
 
----
-
-## Work Packages
-
-| #    | Package                                                                                          | Responsible                             |
-| ---- | ------------------------------------------------------------------------------------------------ | --------------------------------------- |
-| WP1  | **Camera & Vision Pipeline** — USB capture, YOLO inference, HUD overlay, clip buffer             | Sidharth Vinod                          |
-| WP2  | **Fall Detection** — Spine-angle state machine, motionless tracking, lying-down classification   | Sidharth Vinod, Tan Yu Xuan             |
-| WP3  | **Fight Detection** — 11-signal scorer, per-person state machines, alert cooldowns               | Lim Bing Xian                           |
-| WP4  | **Audio Detection** — YAMNet integration, heuristic detectors, cross-modal fusion                | Tan Yu Xuan                             |
-| WP5  | **Alerting & Telegram Bot** — GIF encoding, alert queue, 8-command bot                           | Boo Wai Yee Terry                       |
-| WP6  | **Sensor Integration** — DHT22 (Pi 1), PIR thread (Pi 2), USB speaker TTS                        | Premanand Aishwarya Shri                |
-| WP7  | **Cross-Camera Child Watchdog** — HTTP polling, fault tolerance, missing-person alert            | Lim Bing Xian, Premanand Aishwarya Shri |
-| WP8  | **Web Dashboard** — Flask MJPEG server, `/person_status` API, dark-theme UI                      | Boo Wai Yee Terry                       |
-| WP9  | **Configuration & Deployment** — Centralised `settings.py`, `.env`, threading, graceful shutdown | Sidharth Vinod, Lim Bing Xian           |
-| WP10 | **Documentation & Testing** — README, setup guide, hardware justification, test scenarios        | All members                             |
-
----
 
 ## Setup & Installation
 

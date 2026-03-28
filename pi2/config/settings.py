@@ -26,7 +26,7 @@ load_dotenv()  # loads .env from the project root (or any parent directory)
 # ═════════════════════════════════════════════════════════════════════════════
 
 # Your Telegram bot token from @BotFather.
-TELEGRAM_TOKEN   = os.getenv('TELEGRAM_TOKEN',   '')
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN',   '')
 
 # The chat/group ID to send alerts to. Get it from @userinfobot.
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
@@ -89,7 +89,7 @@ CAMERA_SOURCE = int(os.getenv('CAMERA_INDEX', 0))
 # Requested capture resolution. Driver will use the closest supported mode.
 # Higher → more detail for detection, higher CPU load for YOLO.
 # Lower  → faster inference, less spatial detail.
-CAMERA_WIDTH  = 480
+CAMERA_WIDTH = 480
 CAMERA_HEIGHT = 360
 
 # Requested capture frame rate. Actual FPS depends on camera hardware.
@@ -125,11 +125,12 @@ CONF_THRESHOLD = 0.4
 # Recommended for Pi 5: 1. For weaker hardware: 2.
 INFERENCE_SKIP_FRAMES = 1
 
-# Absolute path to the YOLOv8 pose model file inside the models/ folder.
+# Absolute path to the YOLO26n-pose model file inside the models/ folder.
 # Supports .pt (PyTorch) or .onnx (faster CPU inference on Pi).
 # Override via environment: MODEL_PATH=/path/to/model.onnx python main.py
-BASE_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.getenv('MODEL_PATH', os.path.join(BASE_DIR, 'models', 'yolo26n-pose.onnx'))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.getenv('MODEL_PATH', os.path.join(
+    BASE_DIR, 'models', 'yolo26n-pose.onnx'))
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -188,7 +189,8 @@ PIR_TRIGGERED_WINDOW_SEC = 6.0
 # Pi 2 polls this every CHILD_WATCHDOG_POLL_SEC seconds to get Pi 1's
 # last person-seen timestamp.
 # Set via environment: PI1_STATUS_URL=http://192.168.1.x:5001/person_status
-PI1_STATUS_URL = os.getenv('PI1_STATUS_URL', 'http://10.93.156.188:5001/person_status')
+PI1_STATUS_URL = os.getenv(
+    'PI1_STATUS_URL', 'http://10.93.156.188:5001/person_status')
 
 # Seconds BOTH cameras must see nobody before the child-missing alert fires.
 # Both Pi 1 and Pi 2 must individually exceed this threshold.
@@ -549,7 +551,7 @@ SCREAM_RMS_THRESH = 0.35
 
 # Frequency band (Hz) used for scream spectral flux analysis.
 # Children's screams peak in 900-4000 Hz range.
-SCREAM_LOW_HZ  = 900.0
+SCREAM_LOW_HZ = 900.0
 SCREAM_HIGH_HZ = 4000.0
 
 # Minimum spectral flux in the scream band to count as a scream frame.
@@ -561,7 +563,7 @@ SCREAM_FLUX_THRESH = 0.25
 SCREAM_DURATION_MS = 400.0
 
 # Frequency band (Hz) for cry detection. Children's cries peak in 350-900 Hz.
-CRY_LOW_HZ  = 350.0
+CRY_LOW_HZ = 350.0
 CRY_HIGH_HZ = 900.0
 
 # Minimum spectral flux in the cry band to count as a cry frame.
@@ -571,7 +573,7 @@ CRY_FLUX_THRESH = 0.28
 CRY_DURATION_MS = 400.0
 
 # Frequency band (Hz) for laugh detection. Laughter peaks in 500-2000 Hz.
-LAUGH_LOW_HZ  = 500.0
+LAUGH_LOW_HZ = 500.0
 LAUGH_HIGH_HZ = 2000.0
 
 # Minimum spectral flux in the laugh band to count as a laugh frame.

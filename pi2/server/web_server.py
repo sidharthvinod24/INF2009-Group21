@@ -21,7 +21,7 @@ import numpy as np
 
 # ─── Shared MJPEG state ───────────────────────────────────────────────────────
 
-mjpeg_lock  = threading.Lock()
+mjpeg_lock = threading.Lock()
 mjpeg_frame = None
 
 
@@ -68,7 +68,7 @@ img{width:100%;display:block}
 </style></head><body>
 <h1>Pi 2 — Fight + Fall Monitor (PIR + Audio)</h1>
 <div class="s"><img src="/video_feed" alt="Loading..."></div>
-<p class="f">YOLOv8n-pose &bull; Fight + Fall + Motionless + Audio</p>
+<p class="f">YOLO26n-pose &bull; Fight + Fall + Motionless + Audio</p>
 </body></html>"""
 
 

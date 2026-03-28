@@ -22,11 +22,11 @@ from flask import Flask, Response, render_template_string
 
 # ─── Shared state (written by InferenceThread) ───────────────────────────────
 
-mjpeg_lock          = threading.Lock()
-mjpeg_frame         = None          # latest JPEG bytes for the MJPEG stream
+mjpeg_lock = threading.Lock()
+mjpeg_frame = None          # latest JPEG bytes for the MJPEG stream
 
-person_status_lock  = threading.Lock()
-person_last_seen    = 0.0           # epoch of last frame with a YOLO detection
+person_status_lock = threading.Lock()
+person_last_seen = 0.0           # epoch of last frame with a YOLO detection
 
 
 # ─── Helper writers (called by InferenceThread) ──────────────────────────────
@@ -61,7 +61,7 @@ img{width:100%;display:block}
 </style></head><body>
 <h1>Pi 1 — Fight + Fall Monitor (USB Camera)</h1>
 <div class="s"><img src="/video_feed" alt="Loading..."></div>
-<p class="f">YOLOv8n-pose &bull; Fight + Fall + Motionless Detection</p>
+<p class="f">YOLO26n-pose &bull; Fight + Fall + Motionless Detection</p>
 </body></html>"""
 
 
