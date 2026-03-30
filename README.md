@@ -14,7 +14,7 @@ A real-time home safety monitoring system running entirely at the edge — no cl
 | Lim Bing Xian            | 2401649    |
 | Tan Yu Xuan              | 2400653    |
 | Boo Wai Yee Terry        | 2402445    |
-| Premanand Aishwarya Shri | 2403053    |
+| Premanand Aishwarya Shri | 2401690    |
 
 ---
 
